@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Newport Mega Menu</title>
+<style>
+  /* =========================================================
+     FONTS: the exact files newporthealthcare.com serves.
+     zenon = their Adobe Fonts kit; Nunito Sans = their self-hosted copies.
+     ========================================================= */
+  @font-face { font-family: zenon; font-style: normal; font-weight: 400; font-display: swap; src: url("https://use.typekit.net/af/a2dc00/00000000000000007735ac54/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"); }
+  @font-face { font-family: zenon; font-style: normal; font-weight: 500; font-display: swap; src: url("https://use.typekit.net/af/1ba9cd/00000000000000007735ac6f/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"); }
+  @font-face { font-family: zenon; font-style: normal; font-weight: 600; font-display: swap; src: url("https://use.typekit.net/af/7c0666/00000000000000007735f021/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"); }
+  @font-face { font-family: zenon; font-style: normal; font-weight: 700; font-display: swap; src: url("https://use.typekit.net/af/96a6d6/00000000000000007735ac76/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"); }
+  @font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://www.newporthealthcare.com/wp-content/uploads/fonts/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilnsV8kA_Ykqw.woff2") format("woff2"); }
+  @font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://www.newporthealthcare.com/wp-content/uploads/fonts/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G5ClnsV8kA_Ykqw.woff2") format("woff2"); }
+  @font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("https://www.newporthealthcare.com/wp-content/uploads/fonts/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5nsV8kA_Ykqw.woff2") format("woff2"); }
+  @font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("https://www.newporthealthcare.com/wp-content/uploads/fonts/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5nsV8kA_Ykqw.woff2") format("woff2"); }
+  @font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 800; font-display: swap; src: url("https://www.newporthealthcare.com/wp-content/uploads/fonts/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVi5nsV8kA_Ykqw.woff2") format("woff2"); }
+
+  /* =========================================================
+     TOKENS: values measured from the live homepage (computed styles)
+     ========================================================= */
+  :root {
+    --navy: rgb(39, 41, 82);        /* #272952 */
+    --slate: rgb(62, 81, 120);      /* #3e5178 nav + utility text */
+    --body-text: rgb(52, 52, 52);   /* #343434 */
+    --cream: rgb(255, 251, 247);    /* #fffbf7 page + header background */
+    --grey-5: rgb(230, 230, 230);   /* #e6e6e6 utility bar */
+    --grey-7: rgb(247, 247, 247);   /* #f7f7f7 hero paragraph */
+    --gold: rgb(252, 193, 59);      /* #fcc13b sundance */
+    --gold-hover: #fee6b1;          /* sundance-300 */
+    --gold-active: #fdda89;         /* sundance-200 */
+    --crestview-500: #e7e9ee;       /* white button :active */
+    --link-hover: #657493;          /* --wp--custom--color--link--hover */
+    /* mega-menu-only colors (from Jamie's mockups) */
+    /* Live palette tokens used by the mega menu buttons */
+    --oasis: #4b70b3;
+    --periwinkle: #c8ecf2;  --periwinkle-300: #e9f7fa;
+    --avocado: #82c8a5;     --avocado-300: #cde9db;
+    --autumn: #fa9370;      --autumn-300: #fdd4c6;
+    --blue: var(--oasis);
+    --line: #e7ebf2;
+    --serif: zenon, serif;
+    --sans: "Nunito Sans", sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { font-family: var(--sans); font-size: 16px; color: var(--body-text); background: var(--cream); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; }
+
+  /* Same container math as live: 1200px max, centered, min side padding */
+  .wrap-header { width: min(1200px, 100% - 57.6px); margin: 0 auto; }
+  .wrap-hero   { width: min(1200px, 100% - 80px);   margin: 0 auto; }
+
+  /* ---------- Header (sticky, 112.88px total) ---------- */
+  .site-header { position: sticky; top: 0; z-index: 100; }
+  /* Live: frosted-glass layer behind the header content (.site-header__inner::after) */
+  .site-header::after {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: rgba(255, 255, 255, 0.867); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 24px -8px;
+  }
+  .utility { position: relative; z-index: 101; }
+  .main-row { position: relative; z-index: 102; }
+
+  /* Utility bar: 28px */
+  .utility { background: var(--grey-5); color: var(--slate); }
+  .utility .wrap-header { display: flex; align-items: center; height: 28px; }
+  .utility .group { display: flex; align-items: center; flex-wrap: nowrap; }
+  .utility .group.left { gap: 14.4px; }
+  .utility .group.right { gap: 16px; margin-left: auto; }
+  .utility .item { display: flex; align-items: center; gap: 7px; }
+  .utility a.txt { font-size: 16px; font-weight: 800; line-height: 28px; letter-spacing: 0; }
+  .utility svg { width: 18px; height: 18px; display: block; }
+  /* Live hover: :root a:hover color = --wp--custom--color--link--hover, instant (transition: all 0s) */
+  .utility a:hover { color: var(--link-hover); }
+  .utility a.icon { display: grid; }
+
+  /* Main row: 16px + 52.88px + 16px = 84.88px */
+  .main-row { padding: 16px 0; }
+  .main-row .row { display: flex; align-items: center; gap: 16px; }
+  .main-row .logo { flex: 1 1 auto; line-height: 0; }
+  .main-row .logo img { width: 175px; height: auto; display: inline-block; }
+  .main-row .spacer { flex: 1 1 0; height: 0; }
+  /* Fixed right spacer: 16px gap + 28.9px + 16px gap = 60.9px nav-to-button, same as live at 1440 */
+  .main-row .spacer-right { flex: 0 0 28.9px; }
+  .primary-nav { flex: 0 0 auto; }
+  .primary-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
+  .nav-trigger {
+    position: relative; display: block; background: none; border: 0; cursor: pointer;
+    /* padding + equal negative margin = bigger hover target with zero layout shift */
+    padding: 20px 0; margin: -20px 0;
+    /* Live labels are wrapped in <strong>, so they render at 700 */
+    font-family: var(--sans); font-size: 16px; font-weight: 700; line-height: normal; color: var(--slate);
+  }
+  /* Live underline: 2px crestview bar, 4px below the text, grows from center, width .3s */
+  .nav-trigger::after {
+    content: ""; position: absolute; left: 0; right: 0; margin: auto; bottom: 16px; height: 2px;
+    width: 0; background: var(--slate); transition: width .3s;
+  }
+  .nav-trigger:hover, .nav-trigger[aria-expanded="true"] { color: var(--link-hover); }
+  .nav-trigger:hover::after, .nav-trigger[aria-expanded="true"]::after { width: 100%; }
+  .nav-trigger:focus-visible { outline: 2px solid var(--slate); outline-offset: -14px; }
+  .main-row .cta { flex: 0 0 auto; display: flex; align-items: center; }
+  .btn-contact {
+    display: inline-block; background: var(--gold); color: var(--navy); border-radius: 100px;
+    padding: 14px 28px; font-size: 16px; font-weight: 600; line-height: normal;
+    transition: font-size, padding; /* live header button: no color fade, instant swap */
+  }
+  .btn-contact:hover { background: var(--gold-hover); }
+  .btn-contact:active { background: var(--gold-active); }
+
+  /* ---------- Mega panel ---------- */
+  .mega { position: absolute; left: 0; right: 0; top: 100%; z-index: 103; pointer-events: none; }
+  .mega-card {
+    position: relative; width: min(1296px, 100% - 32px); margin: 0 auto; background: #fff;
+    border-radius: 0 0 18px 18px;
+    /* Shadow below only: clip-path cuts anything above the top edge so the panel reads as
+       sliding out from under the header (sides/bottom keep room for the blur) */
+    box-shadow: 0 24px 48px -12px rgba(39,41,82,.22);
+    clip-path: inset(0 -64px -96px -64px);
+    overflow: hidden; height: 0; opacity: 0;
+    transition: height .32s var(--ease), opacity .2s ease;
+  }
+  /* Live .is-style-color-bar: 8px, hard stops periwinkle 0-67% / bayview 67-88% / sundance 88-100% */
+  .mega-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; z-index: 1;
+    background-image: linear-gradient(to right, #c8ecf2 0%, #c8ecf2 67%, #2279c4 67%, #2279c4 88%, #fcc13b 88%);
+  }
+  .mega.open { pointer-events: auto; }
+  .mega.open .mega-card { opacity: 1; }
+  /* Layout system: a shared 6-track grid (equal tracks, 32px gaps) in every menu.
+     Each link group spans 2 tracks; lists over 6 links split so each half sits on exactly one track.
+     Each card spans 2 tracks at a locked 4:3. Column edges line up across all menus, no list runs
+     past 6 rows, and every panel opens to the same height. */
+  .panel { display: none; position: relative; z-index: 1; padding: 48px; column-gap: 32px; }
+  /* V2: 8-track grid so cards can take a quarter of the panel (2 tracks). Link groups fill the rest:
+     3 tracks each when a menu has two groups, 4 tracks when it has one. */
+  .panel.active { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); align-items: stretch; animation: fadeUp .28s var(--ease); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .col { grid-column: span 3; display: flex; flex-direction: column; min-width: 0; }
+  .panel.cols-1 .col { grid-column: span 4; }
+  .col h3 { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.15; color: var(--slate); margin: 0 0 10px; }
+  .col ul { list-style: none; margin: 0 0 16px; padding: 0; }
+  /* Long lists: two independent columns, one per grid track (first half left, rest right).
+     Independent so a link that wraps only lengthens its own column. */
+  .col .split { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; align-items: start; margin: 0 0 16px; }
+  .col .split ul { margin: 0; }
+  /* Links are inline (row spacing lives on the li) so the hover underline is drawn on every line
+     of a link that wraps, not just under the box. box-decoration-break: clone repeats it per line. */
+  .col li { padding: 3.75px 0; }
+  .col li a {
+    display: inline; font-size: 16px; font-weight: 400; color: var(--body-text);
+    background-image: linear-gradient(var(--blue), var(--blue)); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 100%;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    transition: color .15s, background-size .25s var(--ease);
+  }
+  .col li a:hover, .col li a:focus-visible { color: var(--blue); background-size: 100% 1px; outline: none; }
+  /* =========================================================
+     BUTTONS: live .wp-block-button__link system
+     14px 28px padding, 16px/800, 100px radius, min-width 120px
+     ========================================================= */
+  .btn {
+    display: inline-block; min-width: 120px; border-radius: 100px; padding: 14px 28px; border: 0;
+    font-family: var(--sans); font-size: 16px; font-weight: 800; line-height: normal; white-space: nowrap;
+    transition: color .4s, background-color .4s, border-color .4s;
+  }
+  /* Live .has-arrow::after: circle-arrow icon, 1.5em, tinted with the text color */
+  .btn.has-arrow::after {
+    content: ""; display: inline-block; aspect-ratio: 1 / 1; height: 1.5em; width: auto;
+    margin-left: .5em; margin-right: -.25em; margin-top: -.125em; vertical-align: middle;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc2hhcGUtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iPjxwYXRoIGZpbGw9IiMwMDAiIGQ9Ik0yMS45NzMgMTEuOTg1YzAgNS41MTQtNC40NzQgOS45ODgtOS45ODggOS45ODhTMS45OTcgMTcuNSAxLjk5NyAxMS45ODVzNC40NzUtOS45ODggOS45ODgtOS45ODhjNS41MTQgMCA5Ljk4OCA0LjQ3NSA5Ljk4OCA5Ljk4OG0tOS45ODgtMi43ODd2MS43ODhIOC45OWMtLjU1IDAtLjk5OS40NS0uOTk5IDEgMCAuNTQ4LjQ1Ljk5OC45OTkuOTk4aDIuOTk2djEuNzg4YzAgLjQ1LjU0LjY2OS44NS4zNWwyLjc4Ni0yLjc4N2MuMi0uMi4yLS41MSAwLS43MUwxMi44MzQgOC44NGEuNS41IDAgMCAwLS44NDkuMzYiLz48L3N2Zz4=") center / contain no-repeat;
+            mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc2hhcGUtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iPjxwYXRoIGZpbGw9IiMwMDAiIGQ9Ik0yMS45NzMgMTEuOTg1YzAgNS41MTQtNC40NzQgOS45ODgtOS45ODggOS45ODhTMS45OTcgMTcuNSAxLjk5NyAxMS45ODVzNC40NzUtOS45ODggOS45ODgtOS45ODhjNS41MTQgMCA5Ljk4OCA0LjQ3NSA5Ljk4OCA5Ljk4OG0tOS45ODgtMi43ODd2MS43ODhIOC45OWMtLjU1IDAtLjk5OS40NS0uOTk5IDEgMCAuNTQ4LjQ1Ljk5OC45OTkuOTk4aDIuOTk2djEuNzg4YzAgLjQ1LjU0LjY2OS44NS4zNWwyLjc4Ni0yLjc4N2MuMi0uMi4yLS41MSAwLS43MUwxMi44MzQgOC44NGEuNS41IDAgMCAwLS44NDkuMzYiLz48L3N2Zz4=") center / contain no-repeat;
+  }
+  /* V2: column buttons span the full width of their link group */
+  .col .btn { align-self: stretch; text-align: center; margin-top: auto; }
+
+  /* btn-blue (live Learn More, 28 on the homepage): white on crestview -> crestview on avocado-200, .4s fade */
+  .btn-blue { color: #fff; background: var(--slate); }
+  .btn-blue:hover, .card:hover .btn-blue { color: var(--slate); background: #b4dec9; }
+  /* btn-gold (live): legacy on sundance -> sundance-300 */
+  .btn-gold { color: var(--navy); background: var(--gold); }
+  .btn-gold:hover, .card:hover .btn-gold { background: var(--gold-hover); }
+  /* Card colors from the mockups, mapped to live palette tokens.
+     Hovers follow the live gold pattern (step to the -300 tint); live has no rule for these. */
+  .btn-periwinkle { color: var(--navy); background: var(--periwinkle); }
+  .btn-periwinkle:hover, .card:hover .btn-periwinkle { background: var(--periwinkle-300); }
+  .btn-avocado { color: var(--navy); background: var(--avocado); }
+  .btn-avocado:hover, .card:hover .btn-avocado { background: var(--avocado-300); }
+  .btn-autumn { color: var(--navy); background: var(--autumn); }
+  .btn-autumn:hover, .card:hover .btn-autumn { background: var(--autumn-300); }
+
+  /* V2: square cards */
+  .panel > .card { grid-column: span 2; aspect-ratio: 1 / 1; align-self: start; }
+  .card { position: relative; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; isolation: isolate; }
+  /* V2 cards: no photo and no fill. White card with a 4px border in its soft palette color (--edge);
+     on hover it fills with that same soft color (--tint). */
+  .card { background-color: #fff; border-radius: 24px; border: 4px solid var(--edge, #2279c4); box-shadow: none; color: var(--slate);
+    transition: background-color .3s var(--ease); }
+  .card:hover { background-color: var(--tint, #e7f0f8); }
+  /* Cards have no button: the whole card is the link, so the title sits centered on its own */
+  /* V2: card titles match the column headings (22px) */
+  .card h4 { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.15; margin: 0 14px; transition: color .3s var(--ease); }
+  /* Hover: title goes from navy (crestview) to royal blue (oasis #4b70b3) */
+  .card:hover h4 { color: var(--oasis); }
+  /* Logo cards: no photo, just tint + swirl with the artwork in front */
+  .card-logo .logo-art { display: block; height: 120px; width: auto; max-width: 70%; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(39,41,82,.18)); }
+  /* Logo already carries the name: title hidden visually, kept for screen readers */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* Placeholder imagery: swap `img` in the MENU data below for real photos */
+  .ph { display: grid; place-items: end start; padding: 14px 16px; }
+  .ph span { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(0,0,0,.25); padding: 4px 8px; border-radius: 4px; }
+  .ph-warm  { background: radial-gradient(120% 90% at 30% 20%, #a98e74, #5b4a3d 70%); }
+  .ph-sky   { background: radial-gradient(120% 90% at 70% 20%, #9db4c9, #4f6377 70%); }
+  .ph-sunset{ background: radial-gradient(120% 90% at 50% 10%, #f0b88a, #6a8a6e 60%, #3f5a4a); }
+  .ph-sage  { background: radial-gradient(120% 90% at 30% 30%, #a7b7a3, #4e5e56 70%); }
+  .ph-slate { background: radial-gradient(120% 90% at 60% 30%, #8d94a8, #3c4256 70%); }
+  .ph-dusk  { background: radial-gradient(120% 90% at 40% 20%, #8b7a6c, #2f3340 70%); }
+  .ph-oak   { background: radial-gradient(120% 90% at 60% 20%, #b9a68a, #514737 70%); }
+
+  .scrim { position: fixed; inset: 0; z-index: 90; background: rgba(39,41,82,.28); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+  .scrim.show { opacity: 1; pointer-events: auto; }
+
+  /* ---------- Hero (808.14px tall) ---------- */
+  .hero {
+    position: relative;
+    background-image: url("https://www.newporthealthcare.com/wp-content/uploads/2025/11/Texture-Oasis-scaled.png.webp");
+    background-size: cover; background-position: 0% 0%;
+  }
+  .hero .wrap-hero { padding: 125px 0; }
+  .hero .grid { display: grid; grid-template-columns: 600px 600px; }
+  .hero .copy { display: flex; flex-direction: column; align-items: flex-start; gap: 36px; position: relative; z-index: 1; }
+  .hero h1 { font-family: var(--serif); font-size: 57px; font-weight: 600; line-height: 65.55px; color: #fff; margin: 0; width: 600px; }
+  .hero p { font-family: var(--sans); font-size: 16px; font-weight: 500; line-height: 28px; letter-spacing: 0; color: var(--grey-7); margin: 0; width: 600px; }
+  .hero p a { font-weight: 800; }
+  .hero .buttons { display: flex; align-items: center; gap: 28.8px; margin-top: 50px; }
+  .btn-hero { display: inline-block; border-radius: 100px; padding: 22px 48px; font-size: 16px; font-weight: 800; line-height: normal;
+    transition: color .4s, background-color .4s, border-color .4s; }
+  .btn-hero.gold { background: var(--gold); color: var(--navy); }
+  .btn-hero.gold:hover { background: var(--gold-hover); }
+  .btn-hero.gold:active { background: var(--gold-active); }
+  .btn-hero.white { color: #fff; background: transparent; border: 3px solid #fff; }
+  .btn-hero.white:hover { color: var(--slate); background: #fff; }
+  .btn-hero.white:active { color: var(--slate); background: var(--crestview-500); border-color: var(--crestview-500); }
+  /* Live: img absolutely positioned, left edge at 51% of viewport, 16.16px from top, bottom-aligned */
+  .hero-img { position: absolute; left: 51%; top: 16.156px; bottom: 0; height: calc(100% - 16.156px); width: auto; display: block; }
+
+  /* Below-hero filler so the page scrolls like the live page (keeps scrollbar behavior identical) */
+  .below { height: 1200px; background: var(--cream); }
+
+  /* Desktop-first prototype; mobile is a basic fallback only */
+  .menu-toggle, .mobile-nav { display: none; }
+  @media (max-width: 1023px) {
+    .primary-nav, .main-row .cta, .mega, .utility .group.left { display: none; }
+    .menu-toggle { display: inline-flex; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--navy); }
+    .menu-toggle svg { width: 28px; height: 28px; }
+    .mobile-nav { display: block; position: absolute; top: 100%; left: 0; right: 0; background: #fff; max-height: 0; overflow: hidden; transition: max-height .35s var(--ease); box-shadow: 0 16px 32px rgba(0,0,0,.12); }
+    .mobile-nav.open { max-height: calc(100vh - 100px); overflow-y: auto; }
+    .mobile-nav details { border-bottom: 1px solid var(--line); }
+    .mobile-nav summary { list-style: none; padding: 18px 16px; font-weight: 700; font-size: 17px; color: var(--slate); display: flex; justify-content: space-between; cursor: pointer; }
+    .mobile-nav summary::-webkit-details-marker { display: none; }
+    .mobile-nav summary::after { content: "+"; }
+    .mobile-nav details[open] summary::after { content: "–"; }
+    .mobile-nav .m-group { padding: 0 16px 16px; }
+    .mobile-nav h5 { font-family: var(--serif); font-size: 17px; color: var(--slate); margin: 8px 0 6px; }
+    .mobile-nav .m-group a { display: block; padding: 8px 0; font-size: 15px; }
+    .hero .grid { grid-template-columns: minmax(0, 1fr); }
+    .hero h1, .hero p { width: auto; }
+    .hero-img { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="utility">
+    <div class="wrap-header">
+      <div class="group left">
+        <a class="txt" href="#">Professionals</a>
+        <a class="txt" href="#">Careers</a>
+        <a class="txt" href="#">Outcomes</a>
+      </div>
+      <div class="group right">
+        <div class="item">
+          <a class="icon" href="#" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></a>
+          <a class="txt" href="#">Search</a>
+        </div>
+        <div class="item">
+          <a class="icon" href="#" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></a>
+          <a class="txt" href="#">Email Us</a>
+        </div>
+        <div class="item">
+          <a class="icon" href="tel:8559745697" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></a>
+          <a class="txt" href="tel:8559745697">855-974-5697</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-row">
+    <div class="wrap-header row">
+      <div class="logo"><a href="#"><img src="https://www.newporthealthcare.com/wp-content/uploads/2026/04/logo-newport_healthcare-inline-v2-450x136.png" alt="Newport Healthcare"></a></div>
+      <div class="spacer"></div>
+      <nav class="primary-nav" aria-label="Primary"><ul id="navList"></ul></nav>
+      <div class="spacer spacer-right"></div>
+      <div class="cta"><a class="btn-contact" href="#">Contact Us Today</a></div>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mega" id="mega"><div class="mega-card" id="megaCard"></div></div>
+  <div class="mobile-nav" id="mobileNav"></div>
+</header>
+<div class="scrim" id="scrim"></div>
+
+<main>
+  <section class="hero">
+    <img class="hero-img" src="https://www.newporthealthcare.com/wp-content/uploads/2026/05/iso-teenage-boy-1b-1561x2048.png.webp" alt="">
+    <div class="wrap-hero">
+      <div class="grid">
+        <div class="copy">
+          <h1>A Leading Provider of <a href="#">Mental Health Treatment</a></h1>
+          <p>Newport Healthcare provides industry-leading <a href="#">mental health treatment</a> for children ages 7–11, teens ages 12–18, and young adults ages 18–35. We have residential treatment and outpatient locations across the country, as well as inpatient care through our PrairieCare division in Minnesota. If you’re seeking high-quality care for yourself, a loved one, or a client, get in touch today and we’ll help you find the right program.</p>
+          <div class="buttons">
+            <a class="btn-hero gold" href="#">Get Started</a>
+            <a class="btn-hero white" href="tel:8559745697">Call 24/7</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="below"></div>
+</main>
+
+<script>
+/* =========================================================
+   MENU CONTENT
+   Edit copy/links here. To swap a placeholder for a photo,
+   set img: "path/to/photo.jpg" on any card.
+   ========================================================= */
+const MENU = [
+  {
+    id: "treatment", label: "Our Treatment",
+    columns: [
+      { title: "What We Treat", cta: "View All Conditions",
+        links: ["Depression","Anxiety","OCD","PTSD/Trauma","Substance Use Disorder","Alcohol Use Disorder","Bipolar Disorder","BPD","Eating Disorders","Psychosis"] },
+      { title: "Our Therapies", cta: "View All Therapies",
+        /* Ordered for balance: the split puts the first 6 left, the rest right, so each column
+           gets three acronyms on top and full names below */
+        links: ["ABFT","CBT","DBT","Individual Therapy","Group Therapy","Academic Instruction",
+                "EMDR","ERP","ACT","Motivational Interviewing","Experiential Therapy"] }
+    ],
+    cards: [ { title: "Read our Outcomes", tint: "green", cta: "Learn More", color: "gold", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/02/NH-Website-Programs-Residential-WholePerson-Box-1024x731.jpg" } ]
+  },
+  {
+    id: "programs", label: "Programs",
+    columns: [
+      { title: "Levels of Care", cta: "Learn More",
+        links: ["Residential Program","Partial Hospitalization Program (PHP)","Intensive Outpatient Program (IOP)","Alumni Program"] },
+      { title: "Our Approach", cta: "Learn More",
+        links: ["Mission & History","Virtual Tour","Meet the Team","FAQs","Affiliations","The Joint Commission","Center for Research & Innovation","Reviews"] }
+    ],
+    cards: [ { title: "Meet Your Providers", tint: "blue", cta: "View Our Provider Profiles", color: "gold", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/01/Kubik-170605-Newport_East_1210-Edited-1.jpg" } ]
+  },
+  {
+    id: "resources", label: "Resources",
+    columns: [
+      { title: "Resources", cta: "Learn More",
+        links: ["Blog","Podcast","Videos","In the News","Flyers to Download","Events","Press Releases"] }
+    ],
+    cards: [
+      { title: "Shift Happens Podcast", tint: "yellow", cta: "Listen Now", color: "avocado", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/04/nh-website-forparents-image-femalegroup-02.jpg", logo: "https://www.newporthealthcare.com/wp-content/uploads/2026/07/logo-shift-happens-dark.png" },
+      /* Mockup CTA read "View Our Provider Profiles" here, likely a copy-paste carryover. Placeholder copy below. */
+      { title: "Read our Articles", tint: "pink", cta: "Visit the Blog", color: "autumn", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/06/Landon-alum-resource.jpg" }
+    ]
+  },
+  {
+    id: "get-started", label: "Get Started",
+    columns: [
+      { title: "Get Started", cta: "Get Started Today",
+        links: ["Insurance and Payment","Contact Us","For Your Loved One","For Professionals","For Young Adults"] }
+    ],
+    cards: [
+      { title: "Professional Referrals", tint: "blue", cta: "Learn More About Referrals", color: "periwinkle", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/04/NA-Image-FatherFatherSon-Conversation-5-Print-e1775661091834-1024x916.jpg" },
+      { title: "Contact Us Today", tint: "yellow", cta: "Get Started Today", color: "gold", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/04/iStock-1253877183-2048x1365.jpg" }
+    ]
+  },
+  {
+    id: "locations", label: "Locations",
+    columns: [
+      { title: "States", cta: "Get Started Today",
+        links: ["California","Utah","Washington","Minnesota","Wisconsin","Connecticut","Pennsylvania","Maryland","Georgia","Virginia","North Carolina"] },
+      { title: "Regions", cta: "Get Started Today",
+        links: ["Northern California","Los Angeles","San Diego/Temecula","Washington & Utah","Minnesota & Wisconsin","Northeast","Mid-Atlantic","South"] }
+    ],
+    cards: [ { title: "Take a Tour", tint: "green", cta: "View Our Virtual Tours", color: "avocado", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/02/Newport_Monticello-109-scaled.jpg" } ]
+  }
+];
+
+
+/* ---------- Build desktop nav + panels ---------- */
+const navList = document.getElementById("navList");
+const megaCard = document.getElementById("megaCard");
+const mega = document.getElementById("mega");
+const scrim = document.getElementById("scrim");
+
+MENU.forEach(item => {
+  navList.insertAdjacentHTML("beforeend",
+    `<li><button class="nav-trigger" id="t-${item.id}" aria-expanded="false" aria-controls="p-${item.id}" data-id="${item.id}">${item.label}</button></li>`);
+
+  const cols = item.columns.map(c => `
+    <div class="col">
+      <h3>${c.title}</h3>
+      ${c.links.length > 6
+        ? `<div class="split">${[c.links.slice(0, Math.ceil(c.links.length / 2)), c.links.slice(Math.ceil(c.links.length / 2))].map(half => `<ul>${half.map(l => `<li><a href="#">${l}</a></li>`).join("")}</ul>`).join("")}</div>`
+        : `<ul>${c.links.map(l => `<li><a href="#">${l}</a></li>`).join("")}</ul>`}
+      <a class="btn btn-blue has-arrow" href="#">${c.cta}</a>
+    </div>`).join("");
+
+  /* Card colors: the four soft palette colors the live homepage uses on its program cards.
+     Set tint to one of these names on any card. */
+  const SOFT = { yellow: "#fef3d8" /* sundance-400 */, blue: "#e7f0f8" /* bayview-500 */, pink: "#fee9e2" /* autumn-400 */, green: "#e6f4ed" /* avocado-400 */ };
+  /* V2 border colors: the same soft palette as the hover fill */
+  const cardAttrs = k => `class="card${k.logo ? " card-logo" : ""}" style="--tint:${SOFT[k.tint] || SOFT.blue};--edge:${SOFT[k.tint] || SOFT.blue}"`;
+  const cards = item.cards.map(k => `
+    <a ${cardAttrs(k)} href="#">
+      <!-- V2: no background photo (img values kept in the data) -->
+      ${k.logo ? `<img class="logo-art" src="${k.logo}" alt=""><h4 class="sr-only">${k.title}</h4>` : `<h4>${k.title}</h4>`}
+    </a>`).join("");
+
+  megaCard.insertAdjacentHTML("beforeend",
+    `<div class="panel cols-${item.columns.length}" id="p-${item.id}" role="region" aria-labelledby="t-${item.id}">${cols}${cards}</div>`);
+});
+
+/* ---------- Open / close logic ---------- */
+const triggers = [...document.querySelectorAll(".nav-trigger")];
+let current = null, openTimer = null, closeTimer = null;
+
+function openMenu(id) {
+  clearTimeout(closeTimer);
+  if (current === id) return;
+  triggers.forEach(t => t.setAttribute("aria-expanded", t.dataset.id === id));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "p-" + id));
+  megaCard.style.height = document.getElementById("p-" + id).scrollHeight + "px";
+  mega.classList.add("open");
+  scrim.classList.add("show");
+  current = id;
+}
+function closeMenu() {
+  clearTimeout(openTimer);
+  triggers.forEach(t => t.setAttribute("aria-expanded", "false"));
+  megaCard.style.height = "0px";
+  mega.classList.remove("open");
+  scrim.classList.remove("show");
+  current = null;
+}
+function scheduleClose() { clearTimeout(closeTimer); closeTimer = setTimeout(closeMenu, 220); }
+
+triggers.forEach((t, i) => {
+  // Hover intent: short delay on first open, instant switch once a menu is already open
+  t.addEventListener("mouseenter", () => {
+    clearTimeout(openTimer); clearTimeout(closeTimer);
+    openTimer = setTimeout(() => openMenu(t.dataset.id), current ? 0 : 120);
+  });
+  t.addEventListener("mouseleave", () => { clearTimeout(openTimer); scheduleClose(); });
+  t.addEventListener("click", () => current === t.dataset.id ? closeMenu() : openMenu(t.dataset.id));
+  t.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      const next = triggers[(i + (e.key === "ArrowRight" ? 1 : -1) + triggers.length) % triggers.length];
+      next.focus(); if (current) openMenu(next.dataset.id);
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault(); openMenu(t.dataset.id);
+      document.querySelector(`#p-${t.dataset.id} a`)?.focus();
+    }
+  });
+});
+mega.addEventListener("mouseenter", () => clearTimeout(closeTimer));
+mega.addEventListener("mouseleave", scheduleClose);
+scrim.addEventListener("click", closeMenu);
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && current) { const id = current; closeMenu(); document.getElementById("t-" + id).focus(); }
+});
+document.getElementById("header").addEventListener("focusout", e => {
+  if (!e.currentTarget.contains(e.relatedTarget)) closeMenu();
+});
+window.addEventListener("resize", () => {
+  if (current) megaCard.style.height = document.getElementById("p-" + current).scrollHeight + "px";
+});
+
+/* ---------- Mobile fallback (basic) ---------- */
+const mobileNav = document.getElementById("mobileNav");
+mobileNav.innerHTML = MENU.map(item => `
+  <details>
+    <summary>${item.label}</summary>
+    ${item.columns.map(c => `<div class="m-group"><h5>${c.title}</h5>${c.links.map(l => `<a href="#">${l}</a>`).join("")}</div>`).join("")}
+  </details>`).join("");
+const toggle = document.getElementById("menuToggle");
+toggle.addEventListener("click", () => toggle.setAttribute("aria-expanded", mobileNav.classList.toggle("open")));
+</script>
+</body>
+</html>

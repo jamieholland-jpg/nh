@@ -133,14 +133,6 @@
   }
   .mega.open { pointer-events: auto; }
   .mega.open .mega-card { opacity: 1; }
-  /* Live Texture-Periwinkle swirl as ONE image (no tiling), sized to cover the panel and anchored to its
-     top band, where the curves are strongest. The raw texture is too low-contrast to read, so it's
-     darkened then contrast-boosted and laid over white at 25%. */
-  .mega-card::after {
-    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: url("https://www.newporthealthcare.com/wp-content/uploads/2025/11/Texture-Periwinkle-scaled.png") center top / cover no-repeat;
-    filter: brightness(.65) contrast(4); opacity: .25;
-  }
   /* Layout system: a shared 6-track grid (equal tracks, 32px gaps) in every menu.
      Each link group spans 2 tracks; lists over 6 links split so each half sits on exactly one track.
      Each card spans 2 tracks at a locked 4:3. Column edges line up across all menus, no list runs
@@ -203,19 +195,15 @@
   .panel > .card { grid-column: span 2; aspect-ratio: 4 / 3; align-self: start; }
   .card { position: relative; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; isolation: isolate; }
   /* Soft-color cards, matching the live homepage program cards (Newport Academy / Institute / CFF / PrairieCare):
-     pastel palette background, 20px radius, soft shadow, crestview titles, navy Learn More buttons.
-     Photo: full color, multiply-blended so its whites take on the pastel and its shadows/edges keep their detail.
-     A soft wash of the card color sits behind the title + button so they stay readable over the photo. */
-  /* No shadow; 8px white border + 24px radius, matching the live interior-page hero photos (e.g. /treatment/depression/) */
-  .card { background-color: var(--tint, #e7f0f8); border-radius: 24px; border: 8px solid #fff; box-shadow: none; color: var(--slate); }
+     pastel palette background and crestview titles. No glow behind the title.
+     Photo: black and white, multiply-blended so its whites take on the pastel and its shadows/edges keep their detail. */
+  /* No shadow or border (panel is white); 24px radius, matching the live interior-page hero photos */
+  .card { background-color: var(--tint, #e7f0f8); border-radius: 24px; border: 0; box-shadow: none; color: var(--slate); }
   .card .media { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; transition: transform .6s var(--ease), opacity .6s var(--ease);
-    filter: brightness(1.1); mix-blend-mode: multiply; opacity: .2; }
-  /* Hover: photo zooms and fades from 20% to 10%, so the whole block lightens toward its pastel */
-  .card:hover .media { transform: scale(1.1); opacity: .1; }
-  .card::after {
-    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    background: radial-gradient(ellipse 62% 34% at 50% 50%, color-mix(in srgb, var(--tint) 88%, transparent) 0%, color-mix(in srgb, var(--tint) 60%, transparent) 55%, transparent 100%);
-  }
+    filter: grayscale(1) brightness(1.1); mix-blend-mode: multiply; opacity: .1; }
+  /* Hover: photo zooms and fades from 10% to 5%, so the whole block lightens toward its pastel.
+     Target is WCAG AA for large text (3:1). */
+  .card:hover .media { transform: scale(1.1); opacity: .05; }
   /* Cards have no button: the whole card is the link, so the title sits centered on its own */
   .card h4 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.15; margin: 0 24px; transition: color .3s var(--ease); }
   /* Hover: title goes from navy (crestview) to royal blue (oasis #4b70b3) */
@@ -365,7 +353,10 @@ const MENU = [
       { title: "What We Treat", cta: "View All Conditions",
         links: ["Depression","Anxiety","OCD","PTSD/Trauma","Substance Use Disorder","Alcohol Use Disorder","Bipolar Disorder","BPD","Eating Disorders","Psychosis"] },
       { title: "Our Therapies", cta: "View All Therapies",
-        links: ["ABFT","CBT","DBT","EMDR","ERP","ACT","Motivational Interviewing","Experiential Therapy","Individual Therapy","Group Therapy","Academic Instruction"] }
+        /* Ordered for balance: the split puts the first 6 left, the rest right, so each column
+           gets three acronyms on top and full names below */
+        links: ["ABFT","CBT","DBT","Individual Therapy","Group Therapy","Academic Instruction",
+                "EMDR","ERP","ACT","Motivational Interviewing","Experiential Therapy"] }
     ],
     cards: [ { title: "Read our Outcomes", tint: "green", cta: "Learn More", color: "gold", img: "https://www.newporthealthcare.com/wp-content/uploads/2026/02/NH-Website-Programs-Residential-WholePerson-Box-1024x731.jpg" } ]
   },
